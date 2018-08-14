@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Flappy_Pig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameController" customModule="Flappy_Pig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,20 +41,31 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIR-Wf-Sy2">
-                                        <rect key="frame" x="139" y="281" width="60" height="40"/>
+                                        <rect key="frame" x="157.5" y="321" width="60" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="dEW-K3-ISW"/>
                                             <constraint firstAttribute="height" constant="40" id="iHd-4Y-jSP"/>
                                         </constraints>
                                     </imageView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emc-KU-O6v">
+                                        <rect key="frame" x="103" y="164.5" width="169" height="219"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="n9k-nd-3F1" kind="embed" id="VgG-jc-FQC"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="GT9-4d-QSb" firstAttribute="leading" secondItem="7xp-BV-u5h" secondAttribute="leading" id="07a-Xy-549"/>
-                                    <constraint firstItem="EIR-Wf-Sy2" firstAttribute="centerY" secondItem="7xp-BV-u5h" secondAttribute="centerY" multiplier="1.1" id="9Iw-tz-EE1"/>
                                     <constraint firstAttribute="trailing" secondItem="GT9-4d-QSb" secondAttribute="trailing" id="A2w-JZ-e9E"/>
+                                    <constraint firstItem="emc-KU-O6v" firstAttribute="height" secondItem="GT9-4d-QSb" secondAttribute="height" multiplier="0.4" id="FUx-wc-pP4"/>
+                                    <constraint firstItem="emc-KU-O6v" firstAttribute="width" secondItem="GT9-4d-QSb" secondAttribute="width" multiplier="0.45" id="Wx7-JX-wgA"/>
+                                    <constraint firstItem="emc-KU-O6v" firstAttribute="centerX" secondItem="7xp-BV-u5h" secondAttribute="centerX" id="XqY-Pt-gEa"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIR-Wf-Sy2" secondAttribute="bottom" constant="186" id="ffa-G9-VTc"/>
                                     <constraint firstItem="GT9-4d-QSb" firstAttribute="top" secondItem="7xp-BV-u5h" secondAttribute="top" id="fii-MD-N8P"/>
-                                    <constraint firstItem="EIR-Wf-Sy2" firstAttribute="centerX" secondItem="7xp-BV-u5h" secondAttribute="centerX" multiplier="0.9" id="rL7-6E-Lgb"/>
+                                    <constraint firstItem="EIR-Wf-Sy2" firstAttribute="leading" secondItem="7xp-BV-u5h" secondAttribute="leading" constant="157.5" id="hzJ-Tv-XsX"/>
+                                    <constraint firstItem="emc-KU-O6v" firstAttribute="centerY" secondItem="7xp-BV-u5h" secondAttribute="centerY" id="zOL-Uo-Nsx"/>
                                     <constraint firstAttribute="bottom" secondItem="GT9-4d-QSb" secondAttribute="bottom" id="zue-JT-94y"/>
                                 </constraints>
                             </view>
@@ -76,15 +87,51 @@
                         <outlet property="backgroundImageView" destination="GT9-4d-QSb" id="g9X-r3-aM1"/>
                         <outlet property="basegroundImageView" destination="hvO-RG-QNM" id="qm2-5u-51N"/>
                         <outlet property="basegroundLeadingConstraint" destination="6zm-1q-ttU" id="pBQ-hJ-8j6"/>
+                        <outlet property="birdBottomConstraint" destination="ffa-G9-VTc" id="ELq-qM-5Uo"/>
                         <outlet property="flappyPigImageView" destination="EIR-Wf-Sy2" id="MSQ-BP-qaq"/>
+                        <outlet property="welcomeContainerView" destination="emc-KU-O6v" id="sWf-hD-6UH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
         </scene>
+        <!--Start View Controller-->
+        <scene sceneID="UuV-fz-WxA">
+            <objects>
+                <viewController id="n9k-nd-3F1" customClass="StartViewController" customModule="Flappy_Pig" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="swP-Zc-ciQ">
+                        <rect key="frame" x="0.0" y="0.0" width="169" height="219"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeC-fG-ryd">
+                                <rect key="frame" x="0.0" y="0.0" width="169" height="219"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button" image="message"/>
+                                <connections>
+                                    <action selector="startAcceleration:" destination="n9k-nd-3F1" eventType="touchUpInside" id="IyN-8o-k4b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YeC-fG-ryd" firstAttribute="leading" secondItem="swP-Zc-ciQ" secondAttribute="leading" id="Nb6-BG-VB2"/>
+                            <constraint firstAttribute="bottom" secondItem="YeC-fG-ryd" secondAttribute="bottom" id="OHJ-wm-5kM"/>
+                            <constraint firstItem="YeC-fG-ryd" firstAttribute="top" secondItem="swP-Zc-ciQ" secondAttribute="top" id="XTW-cI-4YC"/>
+                            <constraint firstAttribute="trailing" secondItem="YeC-fG-ryd" secondAttribute="trailing" id="ZXa-Yf-jJj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="welcomeButton" destination="YeC-fG-ryd" id="icF-kD-Z2F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KG8-oQ-eLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="885" y="118"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background-1" width="288" height="512"/>
+        <image name="message" width="184" height="267"/>
     </resources>
 </document>

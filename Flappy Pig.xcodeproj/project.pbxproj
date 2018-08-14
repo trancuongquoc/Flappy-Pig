@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4B43AD2122BBEC003DAA84 /* pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4B43AC2122BBEC003DAA84 /* pipe.swift */; };
 		4E8F9DED212176FB00A21C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */; };
-		4E8F9DEF212176FB00A21C06 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F9DEE212176FB00A21C06 /* ViewController.swift */; };
+		4E8F9DEF212176FB00A21C06 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F9DEE212176FB00A21C06 /* GameController.swift */; };
 		4E8F9DF2212176FB00A21C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF0212176FB00A21C06 /* Main.storyboard */; };
 		4E8F9DF4212176FB00A21C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF3212176FB00A21C06 /* Assets.xcassets */; };
 		4E8F9DF7212176FB00A21C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF5212176FB00A21C06 /* LaunchScreen.storyboard */; };
+		4EA465B921227A9A00E35332 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA465B821227A9A00E35332 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E4B43AC2122BBEC003DAA84 /* pipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pipe.swift; sourceTree = "<group>"; };
 		4E8F9DE9212176FB00A21C06 /* Flappy Pig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flappy Pig.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4E8F9DEE212176FB00A21C06 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4E8F9DEE212176FB00A21C06 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		4E8F9DF1212176FB00A21C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4E8F9DF3212176FB00A21C06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E8F9DF6212176FB00A21C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E8F9DF8212176FB00A21C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EA465B821227A9A00E35332 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E4B43AE2122BBF3003DAA84 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				4E4B43AC2122BBEC003DAA84 /* pipe.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
 		4E8F9DE0212176FB00A21C06 = {
 			isa = PBXGroup;
 			children = (
@@ -55,13 +67,23 @@
 			isa = PBXGroup;
 			children = (
 				4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */,
-				4E8F9DEE212176FB00A21C06 /* ViewController.swift */,
+				4E4B43AE2122BBF3003DAA84 /* Modal */,
+				4EA465BA21227AA500E35332 /* Controllers */,
 				4E8F9DF0212176FB00A21C06 /* Main.storyboard */,
 				4E8F9DF3212176FB00A21C06 /* Assets.xcassets */,
 				4E8F9DF5212176FB00A21C06 /* LaunchScreen.storyboard */,
 				4E8F9DF8212176FB00A21C06 /* Info.plist */,
 			);
 			path = "Flappy Pig";
+			sourceTree = "<group>";
+		};
+		4EA465BA21227AA500E35332 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4E8F9DEE212176FB00A21C06 /* GameController.swift */,
+				4EA465B821227A9A00E35332 /* StartViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +158,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E8F9DEF212176FB00A21C06 /* ViewController.swift in Sources */,
+				4E8F9DEF212176FB00A21C06 /* GameController.swift in Sources */,
 				4E8F9DED212176FB00A21C06 /* AppDelegate.swift in Sources */,
+				4EA465B921227A9A00E35332 /* StartViewController.swift in Sources */,
+				4E4B43AD2122BBEC003DAA84 /* pipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
