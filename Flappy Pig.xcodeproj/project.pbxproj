@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E4B43AD2122BBEC003DAA84 /* pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4B43AC2122BBEC003DAA84 /* pipe.swift */; };
 		4E8F9DED212176FB00A21C06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */; };
 		4E8F9DEF212176FB00A21C06 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8F9DEE212176FB00A21C06 /* GameController.swift */; };
 		4E8F9DF2212176FB00A21C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF0212176FB00A21C06 /* Main.storyboard */; };
 		4E8F9DF4212176FB00A21C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF3212176FB00A21C06 /* Assets.xcassets */; };
 		4E8F9DF7212176FB00A21C06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E8F9DF5212176FB00A21C06 /* LaunchScreen.storyboard */; };
 		4EA465B921227A9A00E35332 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA465B821227A9A00E35332 /* StartViewController.swift */; };
+		4EFDF4D621255E8100E29688 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4D521255E8100E29688 /* GamePlay.swift */; };
+		4EFDF4D821255EB500E29688 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4D721255EB500E29688 /* Background.swift */; };
+		4EFDF4DA21255ED900E29688 /* Baseground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4D921255ED900E29688 /* Baseground.swift */; };
+		4EFDF4DC212566D300E29688 /* Bird.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4DB212566D300E29688 /* Bird.swift */; };
+		4EFDF4DE2125681000E29688 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4DD2125681000E29688 /* Extension.swift */; };
+		4EFDF4E021256C6700E29688 /* Pipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4DF21256C6700E29688 /* Pipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4E4B43AC2122BBEC003DAA84 /* pipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pipe.swift; sourceTree = "<group>"; };
 		4E8F9DE9212176FB00A21C06 /* Flappy Pig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flappy Pig.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E8F9DEE212176FB00A21C06 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -26,6 +30,12 @@
 		4E8F9DF6212176FB00A21C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E8F9DF8212176FB00A21C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EA465B821227A9A00E35332 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		4EFDF4D521255E8100E29688 /* GamePlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
+		4EFDF4D721255EB500E29688 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		4EFDF4D921255ED900E29688 /* Baseground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseground.swift; sourceTree = "<group>"; };
+		4EFDF4DB212566D300E29688 /* Bird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bird.swift; sourceTree = "<group>"; };
+		4EFDF4DD2125681000E29688 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		4EFDF4DF21256C6700E29688 /* Pipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +52,7 @@
 		4E4B43AE2122BBF3003DAA84 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				4E4B43AC2122BBEC003DAA84 /* pipe.swift */,
+				4EFDF4DF21256C6700E29688 /* Pipe.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -67,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				4E8F9DEC212176FB00A21C06 /* AppDelegate.swift */,
+				4EFDF4E121256D2300E29688 /* Extensions + Utilities */,
 				4E4B43AE2122BBF3003DAA84 /* Modal */,
 				4EA465BA21227AA500E35332 /* Controllers */,
 				4E8F9DF0212176FB00A21C06 /* Main.storyboard */,
@@ -84,6 +95,18 @@
 				4EA465B821227A9A00E35332 /* StartViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4EFDF4E121256D2300E29688 /* Extensions + Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4EFDF4D521255E8100E29688 /* GamePlay.swift */,
+				4EFDF4D721255EB500E29688 /* Background.swift */,
+				4EFDF4D921255ED900E29688 /* Baseground.swift */,
+				4EFDF4DB212566D300E29688 /* Bird.swift */,
+				4EFDF4DD2125681000E29688 /* Extension.swift */,
+			);
+			path = "Extensions + Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,10 +181,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EFDF4D621255E8100E29688 /* GamePlay.swift in Sources */,
+				4EFDF4DC212566D300E29688 /* Bird.swift in Sources */,
 				4E8F9DEF212176FB00A21C06 /* GameController.swift in Sources */,
 				4E8F9DED212176FB00A21C06 /* AppDelegate.swift in Sources */,
 				4EA465B921227A9A00E35332 /* StartViewController.swift in Sources */,
-				4E4B43AD2122BBEC003DAA84 /* pipe.swift in Sources */,
+				4EFDF4D821255EB500E29688 /* Background.swift in Sources */,
+				4EFDF4E021256C6700E29688 /* Pipe.swift in Sources */,
+				4EFDF4DA21255ED900E29688 /* Baseground.swift in Sources */,
+				4EFDF4DE2125681000E29688 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
