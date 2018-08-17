@@ -22,7 +22,8 @@ class GameController: UIViewController {
     var gravity : CGFloat = 9.8
     var velocity: CGFloat = 0
     var t: CGFloat = 0
-    
+    var timer: Timer?
+
     var isCollided: Bool = false {
         didSet {
             if isCollided == true {
@@ -57,32 +58,32 @@ class GameController: UIViewController {
         view.addSubview(tappingButton)
     }
     
-    var animationTimer: Timer?
-    var accelerationTimer: Timer?
-    var spawningPipeTimer: Timer?
-    var basegroundTimer: Timer?
+
     @objc func startGame() {
         welcomeContainerView.isHidden = true
         tappingButton.isHidden = false
-        animationTimer = Timer.scheduledTimer(timeInterval: 1.0 / 70, target: self, selector: #selector(animate), userInfo: nil, repeats: true)
-        accelerationTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30, target: self, selector: #selector(accelerate), userInfo: nil, repeats: true)
-        spawningPipeTimer = Timer.scheduledTimer(timeInterval: 2.1, target: self, selector: #selector(spawningPipes), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1 / 30, target: self, selector: #selector(run), userInfo: nil, repeats: true)
+        spawningPipes()
     }
     
- 
+    var randomHeight: CGFloat = Pipe.getRandomHeight()
+
+    @objc func run() {
+        movingBaseground()
+        animate()
+        accelerate()
+    }
 }
 
 extension GameController {
     func stopTimer() {
-        animationTimer?.invalidate()
-        accelerationTimer?.invalidate()
-        spawningPipeTimer?.invalidate()
-        basegroundTimer?.invalidate()
+        timer?.invalidate()
+        timer = nil
     }
 }
 extension GameController { // Pipe spawning logic
-    @objc func spawningPipes() {
-        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: Pipe.getRandomHeight(view: view)))
+    func spawningPipes() {
+        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: randomHeight))
         let upperPipe = Pipe.create(pipeDimension: upperPipeDim, view: view)
         
         let lowerPipe_y   = upperPipeDim.height + verticalDistance
@@ -91,11 +92,11 @@ extension GameController { // Pipe spawning logic
         let lowerPipe = Pipe.create(pipeDimension: lowerPipe_dim, view: view)
         Pipe.move(pipe: upperPipe, delay: 0)
         Pipe.move(pipe: lowerPipe, delay: 0)
-        spawnNextPipes(delay: 1.0)
     }
     
     func spawnNextPipes(delay: Double) {
-        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: Pipe.getRandomHeight(view: view)))
+        randomHeight = Pipe.getRandomHeight()
+        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: randomHeight))
         let upperPipe = Pipe.create(pipeDimension: upperPipeDim, view: view)
         
         let lowerPipe_y   = upperPipeDim.height + verticalDistance
@@ -111,13 +112,12 @@ extension GameController { //Baseground and background setup
     
     func setupBaseground() {
         Baseground.setImage(basegroundImage: basegroundImageView)
-        basegroundTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30, target: self, selector: #selector(movingBaseground), userInfo: nil, repeats: true)
     }
     func setupBackground() {
         Background.setImage(backgroundImage: backgroundImageView)
     }
     
-    @objc func movingBaseground() {
+    func movingBaseground() {
         Baseground.move(leadingConstraint: basegroundLeadingConstraint)
     }
 }
@@ -127,11 +127,11 @@ extension GameController { //Bird Acceleration and animation
         GamePlay.jump(time: &t, velocity: &velocity)
     }
     
-    @objc func accelerate() {
+    func accelerate() {
         GamePlay.accelerate(time: &t, velocity: &velocity, bottomConstraint: &birdBottomConstraint.constant)
     }
     
-    @objc func animate() {
+    func animate() {
         Bird.animate(flappyPigImageView)
     }
 }

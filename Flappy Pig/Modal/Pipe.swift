@@ -24,8 +24,8 @@ class Pipe {
         self.height = size.height
     }
 
-    class func getRandomHeight(view: UIView) -> CGFloat {
-        let pipeHeight = CGFloat.random(min: 75, max: view.bounds.height / 2)
+    class func getRandomHeight() -> CGFloat {
+        let pipeHeight = CGFloat.random(min: 75, max: 400)
         return pipeHeight
     }
     
@@ -43,21 +43,4 @@ class Pipe {
                        completion: nil
         )
     }
-    
-//    class func spawn(_ view: UIView, delay: Double, baseground_height: CGFloat) {
-//        let verticalDistance: CGFloat = 200
-//        let upperPipe_dim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: CGFloat.random(min: 75, max: view.bounds.height / 2)))
-//
-//        let lowerPipe_height = view.bounds.height - upperPipe_dim.height - verticalDistance - baseground_height
-//        let lowerPipe_y      = upperPipe_dim.height + verticalDistance
-//        let lowerPipe_dim = Pipe(origin: CGPoint(x: 400, y: lowerPipe_y), size: CGSize(width: 100, height: lowerPipe_height))
-//
-//        let upperPipe = Pipe.create(pipeDimension: upperPipe_dim, view: view)
-//        let lowerPipe = Pipe.create(pipeDimension: lowerPipe_dim, view: view)
-//
-//        Pipe.move(pipe: lowerPipe, delay: delay)
-//        Pipe.move(pipe: upperPipe, delay: delay)
-//    }
-
-    
 }

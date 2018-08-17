@@ -13,7 +13,7 @@ class Baseground {
         if leadingConstraint.constant <= -80 {
             leadingConstraint.constant = -10
         }
-        leadingConstraint.constant -= 5
+        leadingConstraint.constant -= 10
     }
     
     class func setImage(basegroundImage: UIImageView) {
