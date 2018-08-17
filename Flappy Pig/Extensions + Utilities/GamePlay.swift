@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class GamePlay {
     
@@ -24,9 +25,9 @@ class GamePlay {
         constant += velocity
     }
     
-    class func isCollided(birdImageView: UIImageView, pipeView: UIView) -> Bool {
-        let isCollided = birdImageView.frame.intersects(pipeView.frame)
-        return isCollided
+    class func isCollided(firstView: UIImageView, secondView: UIImageView) -> Bool {
+        let collided = firstView.frame.intersects(secondView.frame)
+        return collided
+        }
     }
 
-}

@@ -13,7 +13,8 @@ class Pipe {
     var y: CGFloat = 0
     var width: CGFloat = 100
     var height: CGFloat = 200
-    
+    static var limit: CGFloat = 600
+
     init(origin: CGPoint, size: CGSize) {
         let origin = origin
         let size = size
@@ -29,16 +30,13 @@ class Pipe {
     }
     
     class func create(pipeDimension: Pipe, view: UIView) -> UIView {
-        let width: CGFloat = 100
         let pipeView = UIView(frame: CGRect(x: pipeDimension.x, y: pipeDimension.y, width: pipeDimension.width, height: pipeDimension.height))
         pipeView.layer.contents = UIImage(named: "pipe-red")?.cgImage
         view.addSubview(pipeView)
-        view.bringSubview(toFront: pipeView)
         return pipeView
     }
     
     class func move(pipe: UIView, delay: Double) {
-        let limit: CGFloat = 600
         UIView.animate(withDuration: 2, delay: delay, options: [.curveLinear], animations: {
             pipe.frame.origin.x -= limit
         },
