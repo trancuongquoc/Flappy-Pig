@@ -45,6 +45,21 @@ class GameController: UIViewController {
     }
 
     func setupGameOpponents() {
+        let pipe_width: CGFloat = 90
+        let pipe_height: CGFloat = 300
+        var start_point: CGFloat = 500
+        upperPipe_1st = Pipe.create(x: start_point, y: 0, width: pipe_width, height: pipe_height, view: view)
+        upperPipe_2nd = Pipe.create(x: start_point + 300, y: 0, width: pipe_width, height: pipe_height, view: view)
+        upperPipe_3rd = Pipe.create(x: start_point + 600, y: 0, width: pipe_width, height: pipe_height, view: view)
+        
+        let vertical_gap: CGFloat = 200
+        let lowerPipe_y = pipe_height + vertical_gap
+        let lowerPipe_height = view.bounds.height - lowerPipe_y - basegroundImageView.bounds.height
+        
+        lowerPipe_1st = Pipe.create(x: start_point, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
+        lowerPipe_2nd = Pipe.create(x: start_point + 300, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
+        lowerPipe_3rd = Pipe.create(x: start_point + 600, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
+
         t = 0
         setupBaseground()
         setupBackground()
@@ -63,15 +78,21 @@ class GameController: UIViewController {
         welcomeContainerView.isHidden = true
         tappingButton.isHidden = false
         timer = Timer.scheduledTimer(timeInterval: 1 / 30, target: self, selector: #selector(run), userInfo: nil, repeats: true)
-        spawningPipes()
     }
     
-    var randomHeight: CGFloat = Pipe.getRandomHeight()
-
+    var upperPipe_1st: UIView?
+    var upperPipe_2nd: UIView?
+    var upperPipe_3rd: UIView?
+    
+    var lowerPipe_1st: UIView?
+    var lowerPipe_2nd: UIView?
+    var lowerPipe_3rd: UIView?
+    
     @objc func run() {
         movingBaseground()
         animate()
         accelerate()
+        spawningPipes()
     }
 }
 
@@ -83,29 +104,23 @@ extension GameController {
 }
 extension GameController { // Pipe spawning logic
     func spawningPipes() {
-        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: randomHeight))
-        let upperPipe = Pipe.create(pipeDimension: upperPipeDim, view: view)
+        let outscreen_point: CGFloat = -600
+        Pipe.move(pipe: &upperPipe_1st!, view: view)
+        Pipe.move(pipe: &upperPipe_2nd!, view: view)
+        Pipe.move(pipe: &upperPipe_3rd!, view: view)
+        Pipe.move(pipe: &lowerPipe_1st!, view: view)
+        Pipe.move(pipe: &lowerPipe_2nd!, view: view)
+        Pipe.move(pipe: &lowerPipe_3rd!, view: view)
         
-        let lowerPipe_y   = upperPipeDim.height + verticalDistance
-        let lowerPipe_height = view.bounds.height - lowerPipe_y - basegroundImageView.bounds.height
-        let lowerPipe_dim = Pipe(origin: CGPoint(x: 400, y: lowerPipe_y), size: CGSize(width: 100, height: lowerPipe_height))
-        let lowerPipe = Pipe.create(pipeDimension: lowerPipe_dim, view: view)
-        Pipe.move(pipe: upperPipe, delay: 0)
-        Pipe.move(pipe: lowerPipe, delay: 0)
-    }
-    
-    func spawnNextPipes(delay: Double) {
-        randomHeight = Pipe.getRandomHeight()
-        let upperPipeDim = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 100, height: randomHeight))
-        let upperPipe = Pipe.create(pipeDimension: upperPipeDim, view: view)
-        
-        let lowerPipe_y   = upperPipeDim.height + verticalDistance
-        let lowerPipe_height = view.bounds.height - lowerPipe_y - basegroundImageView.bounds.height
-        let lowerPipe_dim = Pipe(origin: CGPoint(x: 400, y: lowerPipe_y), size: CGSize(width: 100, height: lowerPipe_height))
-        let lowerPipe = Pipe.create(pipeDimension: lowerPipe_dim, view: view)
-        
-        Pipe.move(pipe: upperPipe, delay: delay)
-        Pipe.move(pipe: lowerPipe, delay: delay)
+        if (upperPipe_1st?.frame.origin.x)! <= outscreen_point {
+            Pipe.settingPointAndSize(upper_pipe: &upperPipe_1st!, lower_pipe: &lowerPipe_1st!, view: view)
+        }
+        if (upperPipe_2nd?.frame.origin.x)! <= outscreen_point {
+            Pipe.settingPointAndSize(upper_pipe: &upperPipe_2nd!, lower_pipe: &lowerPipe_2nd!, view: view)
+        }
+        if (upperPipe_3rd?.frame.origin.x)! <= outscreen_point {
+            Pipe.settingPointAndSize(upper_pipe: &upperPipe_3rd!, lower_pipe: &lowerPipe_3rd!, view: view)
+        }
     }
 }
 extension GameController { //Baseground and background setup

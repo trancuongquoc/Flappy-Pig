@@ -13,7 +13,7 @@ class Pipe {
     var y: CGFloat = 0
     var width: CGFloat = 100
     var height: CGFloat = 200
-    static var limit: CGFloat = 600
+    static var const: CGFloat = 10
 
     init(origin: CGPoint, size: CGSize) {
         let origin = origin
@@ -23,24 +23,31 @@ class Pipe {
         self.width = size.width
         self.height = size.height
     }
-
-    class func getRandomHeight() -> CGFloat {
-        let pipeHeight = CGFloat.random(min: 75, max: 400)
-        return pipeHeight
-    }
     
-    class func create(pipeDimension: Pipe, view: UIView) -> UIView {
-        let pipeView = UIView(frame: CGRect(x: pipeDimension.x, y: pipeDimension.y, width: pipeDimension.width, height: pipeDimension.height))
+    class func create(x: CGFloat, y:CGFloat, width: CGFloat, height: CGFloat, view: UIView) -> UIView {
+        let pipeView = UIView(frame: CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: width, height: height)))
         pipeView.layer.contents = UIImage(named: "pipe-red")?.cgImage
         view.addSubview(pipeView)
         return pipeView
     }
     
-    class func move(pipe: UIView, delay: Double) {
-        UIView.animate(withDuration: 2, delay: delay, options: [.curveLinear], animations: {
-            pipe.frame.origin.x -= limit
-        },
-                       completion: nil
-        )
+    class func move(pipe: inout UIView, view: UIView) {
+        pipe.frame.origin.x -= const
+    }
+    
+    static var random_height = CGFloat.random(min: 75, max: 400)
+    
+    class func settingPointAndSize(upper_pipe: inout UIView, lower_pipe: inout UIView, view: UIView) {
+        random_height = CGFloat.random(min: 75, max: 400)
+        
+        let vertical_gap: CGFloat = 200
+        let lower_pipe_y = random_height + vertical_gap
+        let lower_pipe_height = view.bounds.height - lower_pipe_y - 120
+        
+        let upper_pipe_dimension = Pipe(origin: CGPoint(x: 400, y: 0), size: CGSize(width: 90, height: random_height))
+        let lower_pipe_dimension = Pipe(origin: CGPoint(x: 400, y: lower_pipe_y), size: CGSize(width: 90, height: lower_pipe_height))
+        
+        upper_pipe = create(x: upper_pipe_dimension.x, y: upper_pipe_dimension.y, width: upper_pipe_dimension.width, height: upper_pipe_dimension.height, view: view)
+        lower_pipe = create(x: lower_pipe_dimension.x, y: lower_pipe_dimension.y, width: lower_pipe_dimension.width, height: lower_pipe_dimension.height, view: view)
     }
 }
