@@ -10,6 +10,7 @@ import UIKit
 
 class GameController: UIViewController {
     
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var welcomeContainerView: UIView!
     @IBOutlet weak var birdBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var basegroundImageView: UIImageView!
@@ -47,18 +48,19 @@ class GameController: UIViewController {
     func setupGameOpponents() {
         let pipe_width: CGFloat = 90
         let pipe_height: CGFloat = 300
-        var start_point: CGFloat = 500
+        let start_point: CGFloat = 500
+        let horizontal_gap: CGFloat = 300
         upperPipe_1st = Pipe.create(x: start_point, y: 0, width: pipe_width, height: pipe_height, view: view)
-        upperPipe_2nd = Pipe.create(x: start_point + 300, y: 0, width: pipe_width, height: pipe_height, view: view)
-        upperPipe_3rd = Pipe.create(x: start_point + 600, y: 0, width: pipe_width, height: pipe_height, view: view)
+        upperPipe_2nd = Pipe.create(x: start_point + horizontal_gap, y: 0, width: pipe_width, height: pipe_height, view: view)
+        upperPipe_3rd = Pipe.create(x: start_point + horizontal_gap * 2, y: 0, width: pipe_width, height: pipe_height, view: view)
         
-        let vertical_gap: CGFloat = 200
+        let vertical_gap: CGFloat = 300
         let lowerPipe_y = pipe_height + vertical_gap
         let lowerPipe_height = view.bounds.height - lowerPipe_y - basegroundImageView.bounds.height
         
         lowerPipe_1st = Pipe.create(x: start_point, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
-        lowerPipe_2nd = Pipe.create(x: start_point + 300, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
-        lowerPipe_3rd = Pipe.create(x: start_point + 600, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
+        lowerPipe_2nd = Pipe.create(x: start_point + horizontal_gap, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
+        lowerPipe_3rd = Pipe.create(x: start_point + horizontal_gap * 2, y: lowerPipe_y, width: pipe_width, height: lowerPipe_height, view: view)
 
         t = 0
         setupBaseground()
@@ -93,6 +95,21 @@ class GameController: UIViewController {
         animate()
         accelerate()
         spawningPipes()
+
+    }
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "\(score)"
+        }
+    }
+    
+    var heHasScored: Bool = false {
+        didSet {
+            if heHasScored == true {
+                score += 1
+                heHasScored = false
+            }
+        }
     }
 }
 
@@ -111,15 +128,34 @@ extension GameController { // Pipe spawning logic
         Pipe.move(pipe: &lowerPipe_1st!, view: view)
         Pipe.move(pipe: &lowerPipe_2nd!, view: view)
         Pipe.move(pipe: &lowerPipe_3rd!, view: view)
-        
+        collisionDetecting(pipe: [upperPipe_1st!, upperPipe_2nd!, upperPipe_3rd!, lowerPipe_1st!, lowerPipe_2nd!, lowerPipe_3rd!])
+
         if (upperPipe_1st?.frame.origin.x)! <= outscreen_point {
             Pipe.settingPointAndSize(upper_pipe: &upperPipe_1st!, lower_pipe: &lowerPipe_1st!, view: view)
+
         }
         if (upperPipe_2nd?.frame.origin.x)! <= outscreen_point {
             Pipe.settingPointAndSize(upper_pipe: &upperPipe_2nd!, lower_pipe: &lowerPipe_2nd!, view: view)
+
         }
         if (upperPipe_3rd?.frame.origin.x)! <= outscreen_point {
             Pipe.settingPointAndSize(upper_pipe: &upperPipe_3rd!, lower_pipe: &lowerPipe_3rd!, view: view)
+        }
+
+    }
+    
+    func collisionDetecting(pipe: [UIView]) {
+        let basegroundCollided = flappyPigImageView.frame.origin.y >= (view.bounds.height - basegroundImageView.bounds.height - flappyPigImageView.bounds.height)
+
+        for i in 0..<pipe.count {
+           var isCollided = flappyPigImageView.frame.intersects(pipe[i].frame)
+            if isCollided || basegroundCollided {
+                t = 0
+                velocity = 0
+                stopTimer()
+            } else {
+                isCollided = false
+            }
         }
     }
 }
@@ -138,6 +174,20 @@ extension GameController { //Baseground and background setup
 }
 
 extension GameController { //Bird Acceleration and animation
+    
+    func updateScore(first_pipe: UIView, second_pipe: UIView, third_pipe: UIView) {
+        let passed_1st_pipe = flappyPigImageView.frame.origin.x == (first_pipe.frame.origin.x + first_pipe.bounds.width)
+        let passed_2nd_pipe = flappyPigImageView.frame.origin.x == (second_pipe.frame.origin.x + second_pipe.bounds.width)
+        let passed_3rd_pipe = flappyPigImageView.frame.origin.x == (third_pipe.frame.origin.x + third_pipe.bounds.width)
+            if passed_1st_pipe || passed_2nd_pipe || passed_3rd_pipe {
+                heHasScored = true
+            } else {
+                heHasScored = false
+        }
+        
+        
+        }
+    
     @objc func jumpUp(_ sender: Any) {
         GamePlay.jump(time: &t, velocity: &velocity)
     }

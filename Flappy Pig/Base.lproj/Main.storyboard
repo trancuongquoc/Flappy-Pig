@@ -61,6 +61,12 @@
                                             <segue destination="n9k-nd-3F1" kind="embed" id="VgG-jc-FQC"/>
                                         </connections>
                                     </containerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpW-Mx-OWZ">
+                                        <rect key="frame" x="317" y="8" width="50" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -72,6 +78,8 @@
                                     <constraint firstAttribute="bottom" secondItem="EIR-Wf-Sy2" secondAttribute="bottom" constant="186" id="ffa-G9-VTc"/>
                                     <constraint firstItem="GT9-4d-QSb" firstAttribute="top" secondItem="7xp-BV-u5h" secondAttribute="top" id="fii-MD-N8P"/>
                                     <constraint firstItem="EIR-Wf-Sy2" firstAttribute="leading" secondItem="7xp-BV-u5h" secondAttribute="leading" constant="157.5" id="hzJ-Tv-XsX"/>
+                                    <constraint firstItem="KpW-Mx-OWZ" firstAttribute="top" secondItem="7xp-BV-u5h" secondAttribute="top" constant="8" id="imA-MW-o2b"/>
+                                    <constraint firstAttribute="trailing" secondItem="KpW-Mx-OWZ" secondAttribute="trailing" constant="8" id="wy0-eU-Lbf"/>
                                     <constraint firstItem="emc-KU-O6v" firstAttribute="centerY" secondItem="7xp-BV-u5h" secondAttribute="centerY" id="zOL-Uo-Nsx"/>
                                     <constraint firstAttribute="bottom" secondItem="GT9-4d-QSb" secondAttribute="bottom" id="zue-JT-94y"/>
                                 </constraints>
@@ -96,6 +104,7 @@
                         <outlet property="basegroundLeadingConstraint" destination="6zm-1q-ttU" id="pBQ-hJ-8j6"/>
                         <outlet property="birdBottomConstraint" destination="ffa-G9-VTc" id="ELq-qM-5Uo"/>
                         <outlet property="flappyPigImageView" destination="EIR-Wf-Sy2" id="MSQ-BP-qaq"/>
+                        <outlet property="scoreLabel" destination="KpW-Mx-OWZ" id="JuV-tN-3fH"/>
                         <outlet property="welcomeContainerView" destination="emc-KU-O6v" id="sWf-hD-6UH"/>
                     </connections>
                 </viewController>

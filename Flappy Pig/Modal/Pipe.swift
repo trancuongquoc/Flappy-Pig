@@ -40,7 +40,7 @@ class Pipe {
     class func settingPointAndSize(upper_pipe: inout UIView, lower_pipe: inout UIView, view: UIView) {
         random_height = CGFloat.random(min: 75, max: 400)
         
-        let vertical_gap: CGFloat = 200
+        let vertical_gap: CGFloat = 300
         let lower_pipe_y = random_height + vertical_gap
         let lower_pipe_height = view.bounds.height - lower_pipe_y - 120
         
