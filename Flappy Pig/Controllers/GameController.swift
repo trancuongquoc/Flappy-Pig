@@ -95,20 +95,12 @@ class GameController: UIViewController {
         animate()
         accelerate()
         spawningPipes()
+        movePipes()
 
     }
     var score = 0 {
         didSet {
             scoreLabel.text = "\(score)"
-        }
-    }
-    
-    var heHasScored: Bool = false {
-        didSet {
-            if heHasScored == true {
-                score += 1
-                heHasScored = false
-            }
         }
     }
 }
@@ -122,12 +114,7 @@ extension GameController {
 extension GameController { // Pipe spawning logic
     func spawningPipes() {
         let outscreen_point: CGFloat = -600
-        Pipe.move(pipe: &upperPipe_1st!, view: view)
-        Pipe.move(pipe: &upperPipe_2nd!, view: view)
-        Pipe.move(pipe: &upperPipe_3rd!, view: view)
-        Pipe.move(pipe: &lowerPipe_1st!, view: view)
-        Pipe.move(pipe: &lowerPipe_2nd!, view: view)
-        Pipe.move(pipe: &lowerPipe_3rd!, view: view)
+     
         collisionDetecting(pipe: [upperPipe_1st!, upperPipe_2nd!, upperPipe_3rd!, lowerPipe_1st!, lowerPipe_2nd!, lowerPipe_3rd!])
 
         if (upperPipe_1st?.frame.origin.x)! <= outscreen_point {
@@ -142,6 +129,15 @@ extension GameController { // Pipe spawning logic
             Pipe.settingPointAndSize(upper_pipe: &upperPipe_3rd!, lower_pipe: &lowerPipe_3rd!, view: view)
         }
 
+    }
+    
+    func movePipes() {
+        Pipe.move(pipe: &upperPipe_1st!, view: view)
+        Pipe.move(pipe: &upperPipe_2nd!, view: view)
+        Pipe.move(pipe: &upperPipe_3rd!, view: view)
+        Pipe.move(pipe: &lowerPipe_1st!, view: view)
+        Pipe.move(pipe: &lowerPipe_2nd!, view: view)
+        Pipe.move(pipe: &lowerPipe_3rd!, view: view)
     }
     
     func collisionDetecting(pipe: [UIView]) {
@@ -174,19 +170,6 @@ extension GameController { //Baseground and background setup
 }
 
 extension GameController { //Bird Acceleration and animation
-    
-    func updateScore(first_pipe: UIView, second_pipe: UIView, third_pipe: UIView) {
-        let passed_1st_pipe = flappyPigImageView.frame.origin.x == (first_pipe.frame.origin.x + first_pipe.bounds.width)
-        let passed_2nd_pipe = flappyPigImageView.frame.origin.x == (second_pipe.frame.origin.x + second_pipe.bounds.width)
-        let passed_3rd_pipe = flappyPigImageView.frame.origin.x == (third_pipe.frame.origin.x + third_pipe.bounds.width)
-            if passed_1st_pipe || passed_2nd_pipe || passed_3rd_pipe {
-                heHasScored = true
-            } else {
-                heHasScored = false
-        }
-        
-        
-        }
     
     @objc func jumpUp(_ sender: Any) {
         GamePlay.jump(time: &t, velocity: &velocity)
