@@ -10,7 +10,7 @@ import UIKit
 
 class Background {
     
-    class func setImage(backgroundImage: UIImageView) {
+    static func setImage(backgroundImage: UIImageView) {
         let image = UIImage(named: "background-1")
         backgroundImage.image = image
     }

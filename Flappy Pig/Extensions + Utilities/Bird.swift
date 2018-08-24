@@ -12,7 +12,7 @@ class Bird {
     
     static var counter = 0
     
-    class func animate(_ birdImageView: UIImageView) {
+    static func animate(_ birdImageView: UIImageView) {
         if counter > 30 {
             counter = 1
         }

@@ -24,20 +24,20 @@ class Pipe {
         self.height = size.height
     }
     
-    class func create(x: CGFloat, y:CGFloat, width: CGFloat, height: CGFloat, view: UIView) -> UIView {
+    static func create(x: CGFloat, y:CGFloat, width: CGFloat, height: CGFloat, view: UIView) -> UIView {
         let pipeView = UIView(frame: CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: width, height: height)))
         pipeView.layer.contents = UIImage(named: "pipe-red")?.cgImage
         view.addSubview(pipeView)
         return pipeView
     }
     
-    class func move(pipe: inout UIView, view: UIView) {
+    static func move(pipe: inout UIView, view: UIView) {
         pipe.frame.origin.x -= const
     }
     
     static var random_height = CGFloat.random(min: 75, max: 400)
     
-    class func settingPointAndSize(upper_pipe: inout UIView, lower_pipe: inout UIView, view: UIView) {
+    static func settingPointAndSize(upper_pipe: inout UIView, lower_pipe: inout UIView, view: UIView) {
         random_height = CGFloat.random(min: 75, max: 400)
         
         let vertical_gap: CGFloat = 300
